@@ -24,7 +24,7 @@ public class HomePageSteps {
 
     @When("user search for a product {string}")
     public void userSearchForAProduct(String productName) {
-        if (productName.equals("search.product.name")) {
+        if (productName.contains("search.product")) {
             homePage.searchForProduct(ConfigReader.getConfigValue(productName));
         }else {
             homePage.searchForProduct(productName);
@@ -49,6 +49,11 @@ public class HomePageSteps {
     @Then("verify bag quantity increases by {int}")
     public void verifyBagQuantityIncreasesBy(int bagItemCount) {
         Assert.assertTrue(homePage.isBagItemCountIncreasesBy(bagItemCount));
+    }
+
+    @When("user login through cookies")
+    public void userLoginThroughCookies() {
+        homePage.loginThroughCookies();
     }
 
 }

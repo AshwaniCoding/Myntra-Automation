@@ -28,7 +28,7 @@ public class ProductPage extends BasePage{
     String SIZE_XPATH = "//p[text()='%s']";
 
     public boolean isProductPageDisplayed() {
-        switchTab();
+        switchToNewTab();
         return productTitle.isDisplayed() && addToBagBtn.isDisplayed() && driver.getCurrentUrl().contains("/buy");
     }
 

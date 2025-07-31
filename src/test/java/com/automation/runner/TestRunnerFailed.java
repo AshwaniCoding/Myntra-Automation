@@ -10,5 +10,5 @@ import org.junit.runner.RunWith;
         glue = "com.automation.steps",
         plugin = {"rerun:report/failed-test/failed-scenario.txt"}
 )
-public class FailedTestRunner {
+public class TestRunnerFailed {
 }

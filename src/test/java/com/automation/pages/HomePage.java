@@ -1,9 +1,12 @@
 package com.automation.pages;
 
 import com.automation.utils.ConfigReader;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.Set;
 
 public class HomePage extends BasePage {
 
@@ -55,5 +58,18 @@ public class HomePage extends BasePage {
         int oldCount = (value == null || value.isBlank()) ? 0 : Integer.parseInt(value.trim());
 
         return oldCount + quantity == Integer.parseInt(bagItemCountLabel.getText().trim());
+    }
+
+    public void loginThroughCookies() {
+        Set<Cookie> allCookies = ConfigReader.getSavedCookies();
+        for(Cookie cookie : allCookies){
+            driver.manage().addCookie(cookie);
+        }
+        driver.navigate().refresh();
+    }
+
+    public void navigateBackToHomePage() {
+        driver.close();
+        switchToDefaultTab();
     }
 }

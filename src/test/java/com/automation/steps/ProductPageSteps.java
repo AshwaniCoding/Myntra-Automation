@@ -27,7 +27,7 @@ public class ProductPageSteps {
 
     @When("user select the size as {string}")
     public void userSelectTheSizeAs(String size) {
-        if (size.equals("search.product.size")) {
+        if (size.contains("search.product")) {
             productPage.selectSize(ConfigReader.getConfigValue(size));
         } else {
             productPage.selectSize(size);

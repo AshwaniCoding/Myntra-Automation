@@ -22,7 +22,7 @@ public class BasePage {
         actions = new Actions(driver);
     }
 
-    public void switchTab(){
+    public void switchToNewTab(){
         String currentWindow = driver.getWindowHandle();
         Set<String> allWindows = driver.getWindowHandles();
 

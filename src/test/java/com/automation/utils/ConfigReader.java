@@ -1,11 +1,13 @@
 package com.automation.utils;
 
-import lombok.Getter;
+
+import org.openqa.selenium.Cookie;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Properties;
+import java.util.Set;
 
 public class ConfigReader {
 
@@ -20,12 +22,32 @@ public class ConfigReader {
         }
     }
 
-    public static void setConfigValue(String key, String value){
+    public static void setConfigValue(String key, String value) {
         prop.setProperty(key, value);
     }
 
-    public static String getConfigValue(String key){
+    public static String getConfigValue(String key) {
         return prop.getProperty(key);
+    }
+
+    public static Set<Cookie> getSavedCookies() {
+
+        Set<Cookie> savedCookies = null;
+        try {
+
+            FileInputStream fileIn = new FileInputStream("src/test/resources/config/cookies.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+
+            savedCookies = (Set<Cookie>) in.readObject();
+
+            in.close();
+            fileIn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return savedCookies;
     }
 
 }
